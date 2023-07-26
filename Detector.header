@@ -1,0 +1,24 @@
+Number of Original Histories: 550
+Number of Scored Entries: 0
+
+Columns of data are as follows:
+ 1: MoleculeID or ParticlePDG
+ 2: Position X [um]
+ 3: Position Y [um]
+ 4: Position Z [um]
+ 5: EventID
+ 6: Track ID
+ 7: Step number
+ 8: Particle name
+ 9: Process name
+10: Volume name
+11: Volume copy number
+12: ParentA ID
+13: ParentB ID
+14: Vertex position x [um]
+15: Vertex position y [um]
+16: Vertex position z [um]
+17: Global time [ps]
+18: Energy deposited [keV]
+19: Kinetice energy [keV]
+

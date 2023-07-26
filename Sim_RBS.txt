@@ -1,0 +1,189 @@
+ Simplest TOPAS example.
+ A box in a beam with EM physics.
+
+The first letters refers to the type of object, s refers "string", d "double"
+
+MATERIALS
+
+s:Ge/World/Type = "TsBox"
+s:Ge/World/Material = "Vacuum"
+d:Ge/World/HLX = 10. m  #Half Length
+d:Ge/World/HLY = 10. m
+d:Ge/World/HLZ = 10. m
+d:Ge/World/TransX = 0. m
+d:Ge/World/TransY = 0. m
+d:Ge/World/TransZ = 0. m
+d:Ge/World/RotX = 0. deg
+d:Ge/World/RotY = 0. deg
+d:Ge/World/RotZ = 0. deg
+
+
+BEAM
+
+
+s:Ge/BeamPosition/Parent="World"
+s:Ge/BeamPosition/Type="Group"
+d:Ge/BeamPosition/TransX= 0. m
+d:Ge/BeamPosition/TransY=0. m
+d:Ge/BeamPosition/TransZ= 0. m 
+d:Ge/BeamPosition/RotX=-0. deg
+d:Ge/BeamPosition/RotY= -90. deg
+d:Ge/BeamPosition/RotZ=0. deg
+
+s:So/MySource/Type = "Beam"  #Beam, Isotropic, Emittance or PhaseSpace
+s:So/MySource/Component = "BeamPosition"
+s:So/MySource/BeamParticle = "2212" #protons
+d:So/MySource/BeamEnergy = 2.0 MeV
+u:So/MySource/BeamEnergySpread = 0.
+s:So/MySource/BeamPositionDistribution = "None"  #None, Flat or Gaussian
+s:So/MySource/BeamPositionCutoffShape = "Ellipse"  #Rectangle or Ellipse (if Flat or Gaussian)
+d:So/MySource/BeamPositionCutoffX = 5. cm  #X extent of position (if Flat or Gaussian)
+d:So/MySource/BeamPositionCutoffY = 5. cm  #Y extent of position (if Flat or Gaussian)
+d:So/MySource/BeamPositionSpreadX = 0.65 cm  #distribution (if Gaussian)
+d:So/MySource/BeamPositionSpreadY = 0.65 cm  #distribution (if Gaussian)
+s:So/MySource/BeamAngularDistribution = "None"  #None, Flat or Gaussian
+d:So/MySource/BeamAngularCutoffX = 90. deg  #X cutoff of angular distrib (if Flat or Gaussian)
+d:So/MySource/BeamAngularCutoffY = 90. deg  #Y cutoff of angular distrib (if Flat or Gaussian)
+d:So/MySource/BeamAngularSpreadX = 0.174 rad  #X angular distribution (if Gaussian)
+d:So/MySource/BeamAngularSpreadY = 0.174 rad  #Y angular distribution (if Gaussian)
+i:So/MySource/NumberOfHistoriesInRun = 10000
+
+GEOMETRY
+
+
+
+Target
+s:Ge/Target/Type		= "TsBox"
+s:Ge/Target/Parent		= "World"
+s:Ge/Target/Material		= "Lead"
+d:Ge/Target/TransX		= 500 cm
+d:Ge/Target/TransY		= 0 cm
+d:Ge/Target/TransZ		= 0 cm
+d:Ge/Target/RotX		= 0 deg
+d:Ge/Target/RotY		= 0 deg
+d:Ge/Target/RotZ		= 0 deg
+d:Ge/Target/HLX		= 100. um
+d:Ge/Target/HLY		= 1 m
+d:Ge/Target/HLZ		= 2.5 m
+s:Ge/Target/Color		= "grey"
+
+
+SCORER
+#s:Sc/Target/Quantity = "Tuple"
+#s:Sc/Target/Component = "Target"
+#s:Sc/Target/OutputType = "ASCII"
+#b:Sc/Target/OutputToConsole = "True"
+#s:Sc/Target/IfOutputFileAlreadyExists = "Overwrite"
+#d:Sc/Target/TimeCut = 10.0 ns
+#b:Sc/Target/IncludeChemicalTrack = "False"
+#b:Sc/Target/IncludeParticleName = "True"
+#b:Sc/Target/IncludePhysicalProcessName  = "True"
+#b:Sc/Target/IncludeEventID = "True"
+#b:Sc/Target/IncludeTrackID = "True"
+#b:Sc/Target/IncludeParentID = "True"
+#b:Sc/Target/IncludeStepNumber = "True"
+#b:Sc/Target/IncludeGlobalTime = "True"
+#b:Sc/Target/IncludeEnergyDeposited = "True"
+#b:Sc/Target/IncludeKineticEnergy   = "True"
+#b:Sc/Target/IncludeVolumeName = "True"
+#b:Sc/Target/IncludeVolumeCopyNumber = "True"
+#b:Sc/Target/IncludeVertexPosition = "True"
+
+#Detector_Material
+
+sv:Ma/Si/Components= 1 "Silicon"
+uv:Ma/Si/Fractions= 1 1.0
+d:Ma/Si/Density= 2.33 g/cm3
+d:Ma/Si/MeanExcitationEnergy= 173.0 eV
+
+
+
+#Detector
+s:Ge/Detector/Type		= "TsCylinder"
+s:Ge/Detector/Parent		= "World"
+s:Ge/Detector/Material		= "Si"
+d:Ge/Detector/TransX		= 0 cm
+d:Ge/Detector/TransY		= 0 m
+d:Ge/Detector/TransZ		= 1.3397 m
+d:Ge/Detector/RotX		= 0 deg
+d:Ge/Detector/RotY		= 90 deg
+d:Ge/Detector/RotZ		= 0 deg
+d:Ge/Detector/RMin		= 0 cm
+d:Ge/Detector/RMax		= 0.5 m
+d:Ge/Detector/HL		= 2 cm
+s:Ge/Detector/Color		= "grey"
+
+#Detector scorer
+#s:Sc/Detector/Quantity = "Tuple"
+#s:Sc/Detector/Component = "Detector"
+#s:Sc/Detector/OutputType = "ASCII"
+#b:Sc/Detector/OutputToConsole = "True"
+#s:Sc/Detector/IfOutputFileAlreadyExists = "Overwrite"
+#d:Sc/Detector/TimeCut = 10.0 ns
+#b:Sc/Detector/IncludeChemicalTrack = "False"
+#b:Sc/Detector/IncludeParticleName = "True"
+#b:Sc/Detector/IncludePhysicalProcessName  = "True"
+#b:Sc/Detector/IncludeEventID = "True"
+#b:Sc/Detector/IncludeTrackID = "True"
+#b:Sc/Detector/IncludeParentID = "True"
+#b:Sc/Detector/IncludeStepNumber = "True"
+#b:Sc/Detector/IncludeGlobalTime = "True"
+#b:Sc/Detector/IncludeEnergyDeposited = "True"
+#b:Sc/Detector/IncludeKineticEnergy   = "True"
+#b:Sc/Detector/IncludeVolumeName = "True"
+#b:Sc/Detector/IncludeVolumeCopyNumber = "True"
+#b:Sc/Detector/IncludeVertexPosition = "True"
+
+#s:Sc/Case1BinnedByIncidentTrackEnergy/Quantity                  = "EnergyDeposit"
+#s:Sc/Case1BinnedByIncidentTrackEnergy/Component                 = "Target"
+#s:Sc/Detector/OutputType = "ASCII"
+#
+#b:Sc/Case1BinnedByIncidentTrackEnergy/OutputToConsole           = "TRUE"
+#s:Sc/Case1BinnedByIncidentTrackEnergy/IfOutputFileAlreadyExists = "Overwrite"
+#i:Sc/Case1BinnedByIncidentTrackEnergy/EBins                     = 1000
+#d:Sc/Case1BinnedByIncidentTrackEnergy/EBinMin                   = 0. MeV
+#d:Sc/Case1BinnedByIncidentTrackEnergy/EBinMax                   = 2. MeV
+#sc:Sc/Case1BinnedByIncidentTrackEnergy/EBinEnergy               = "IncidentTrack"
+
+
+
+
+s:Sc/EnergyDepAtPhantom/Quantity                          = "SurfaceTrackCount"
+s:Sc/EnergyDepAtPhantom/Surface                           = "Target/XMinusSurface"
+b:Sc/EnergyDepAtPhantom/OutputToConsole                   = "True"
+s:Sc/EnergyDepAtPhantom/OutputType                        = "csv"
+s:Sc/EnergyDepAtPhantom/IfOutputFileAlreadyExists         = "Overwrite"
+i:Sc/EnergyDepAtPhantom/EBins                             = 10
+sv:Sc/EnergyDepAtPhantom/OnlyIncludeParticlesNamed        = 1 "proton"
+#s:Sc/EnergyDepAtPhantom/OnlyIncludeParticlesOfGeneration  = "primary"
+d:Sc/EnergyDepAtPhantom/EBinMin                           = 0. MeV
+d:Sc/EnergyDepAtPhantom/EBinMax                           = 2 MeV
+
+
+
+
+
+sv:Ph/Default/Modules = 1 "g4em-standard_opt4" #"g4em-standard_opt2" "g4em-standard_opt3" "g4em-standard_opt4" "g4em-standard_WVI"
+#s:Gr/ViewA/Type             = "OpenGL"
+#i:Gr/ViewA/WindowSizeX      = 1024
+#i:Gr/ViewA/WindowSizeY      = 768
+#b:Gr/ViewA/IncludeAxes      = "False"
+#d:Gr/ViewA/Theta            = 55 deg
+#d:Gr/ViewA/Phi              = 20 deg
+#s:Gr/ViewA/Projection       = "Perspective"
+#d:Gr/ViewA/PerspectiveAngle = 30 deg
+#u:Gr/ViewA/Zoom             = 2.
+#
+#s:Gr/ViewA/ColorBy = "ParticleType"
+#b:Gr/ViewA/UseSmoothTrajectories = "False"
+##Color per chemical specie. Use full name of the molecules
+#sv:Gr/ViewA/ColorByParticleTypeNames = 1 "proton"
+#sv:Gr/ViewA/ColorByParticleTypeColors = 1 "red" 
+
+
+
+b:Ts/PauseBeforeQuit = "True"
+
+
+
+Ts/UseQt = "True"
