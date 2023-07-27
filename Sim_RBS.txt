@@ -46,7 +46,7 @@ d:So/MySource/BeamAngularCutoffX = 90. deg  #X cutoff of angular distrib (if Fla
 d:So/MySource/BeamAngularCutoffY = 90. deg  #Y cutoff of angular distrib (if Flat or Gaussian)
 d:So/MySource/BeamAngularSpreadX = 0.174 rad  #X angular distribution (if Gaussian)
 d:So/MySource/BeamAngularSpreadY = 0.174 rad  #Y angular distribution (if Gaussian)
-i:So/MySource/NumberOfHistoriesInRun = 10000
+i:So/MySource/NumberOfHistoriesInRun = 1000000
 
 GEOMETRY
 
@@ -102,18 +102,19 @@ d:Ma/Si/MeanExcitationEnergy= 173.0 eV
 s:Ge/Detector/Type		= "TsCylinder"
 s:Ge/Detector/Parent		= "World"
 s:Ge/Detector/Material		= "Si"
-d:Ge/Detector/TransX		= 0 cm
+d:Ge/Detector/TransX		= 4.5 m
 d:Ge/Detector/TransY		= 0 m
-d:Ge/Detector/TransZ		= 1.3397 m
+d:Ge/Detector/TransZ		= 1 m
 d:Ge/Detector/RotX		= 0 deg
-d:Ge/Detector/RotY		= 90 deg
+d:Ge/Detector/RotY		= 70 deg
 d:Ge/Detector/RotZ		= 0 deg
 d:Ge/Detector/RMin		= 0 cm
 d:Ge/Detector/RMax		= 0.5 m
 d:Ge/Detector/HL		= 2 cm
 s:Ge/Detector/Color		= "grey"
 
-#Detector scorer
+
+##Detector first scorer
 #s:Sc/Detector/Quantity = "Tuple"
 #s:Sc/Detector/Component = "Detector"
 #s:Sc/Detector/OutputType = "ASCII"
@@ -134,30 +135,33 @@ s:Ge/Detector/Color		= "grey"
 #b:Sc/Detector/IncludeVolumeCopyNumber = "True"
 #b:Sc/Detector/IncludeVertexPosition = "True"
 
-#s:Sc/Case1BinnedByIncidentTrackEnergy/Quantity                  = "EnergyDeposit"
-#s:Sc/Case1BinnedByIncidentTrackEnergy/Component                 = "Target"
-#s:Sc/Detector/OutputType = "ASCII"
-#
-#b:Sc/Case1BinnedByIncidentTrackEnergy/OutputToConsole           = "TRUE"
-#s:Sc/Case1BinnedByIncidentTrackEnergy/IfOutputFileAlreadyExists = "Overwrite"
-#i:Sc/Case1BinnedByIncidentTrackEnergy/EBins                     = 1000
-#d:Sc/Case1BinnedByIncidentTrackEnergy/EBinMin                   = 0. MeV
-#d:Sc/Case1BinnedByIncidentTrackEnergy/EBinMax                   = 2. MeV
-#sc:Sc/Case1BinnedByIncidentTrackEnergy/EBinEnergy               = "IncidentTrack"
+
+#Detector second scorer 
+s:Sc/Case1BinnedByIncidentTrackEnergy/Quantity                  = "EnergyDeposit"
+s:Sc/Case1BinnedByIncidentTrackEnergy/Component                 = "Detector"
+s:Sc/Detector/OutputType = "ASCII"
+b:Sc/Case1BinnedByIncidentTrackEnergy/OutputToConsole           = "False"
+s:Sc/Case1BinnedByIncidentTrackEnergy/IfOutputFileAlreadyExists = "Overwrite"
+i:Sc/Case1BinnedByIncidentTrackEnergy/EBins                     = 10000
+d:Sc/Case1BinnedByIncidentTrackEnergy/EBinMin                   = 0. MeV
+d:Sc/Case1BinnedByIncidentTrackEnergy/EBinMax                   = 2. MeV
+sc:Sc/Case1BinnedByIncidentTrackEnergy/EBinEnergy               = "IncidentTrack"
 
 
 
 
-s:Sc/EnergyDepAtPhantom/Quantity                          = "SurfaceTrackCount"
-s:Sc/EnergyDepAtPhantom/Surface                           = "Target/XMinusSurface"
-b:Sc/EnergyDepAtPhantom/OutputToConsole                   = "True"
-s:Sc/EnergyDepAtPhantom/OutputType                        = "csv"
-s:Sc/EnergyDepAtPhantom/IfOutputFileAlreadyExists         = "Overwrite"
-i:Sc/EnergyDepAtPhantom/EBins                             = 10
-sv:Sc/EnergyDepAtPhantom/OnlyIncludeParticlesNamed        = 1 "proton"
-#s:Sc/EnergyDepAtPhantom/OnlyIncludeParticlesOfGeneration  = "primary"
-d:Sc/EnergyDepAtPhantom/EBinMin                           = 0. MeV
-d:Sc/EnergyDepAtPhantom/EBinMax                           = 2 MeV
+#Detector third scorer 
+
+#s:Sc/EnergyDepAtPhantom/Quantity                          = "SurfaceTrackCount"
+#s:Sc/EnergyDepAtPhantom/Surface                           = "Target/XMinusSurface"
+#b:Sc/EnergyDepAtPhantom/OutputToConsole                   = "True"
+#s:Sc/EnergyDepAtPhantom/OutputType                        = "csv"
+#s:Sc/EnergyDepAtPhantom/IfOutputFileAlreadyExists         = "Overwrite"
+#i:Sc/EnergyDepAtPhantom/EBins                             = 10
+#sv:Sc/EnergyDepAtPhantom/OnlyIncludeParticlesNamed        = 1 "proton"
+##s:Sc/EnergyDepAtPhantom/OnlyIncludeParticlesOfGeneration  = "primary"
+#d:Sc/EnergyDepAtPhantom/EBinMin                           = 0. MeV
+#d:Sc/EnergyDepAtPhantom/EBinMax                           = 2 MeV
 
 
 
@@ -167,7 +171,7 @@ sv:Ph/Default/Modules = 1 "g4em-standard_opt4" #"g4em-standard_opt2" "g4em-stand
 #s:Gr/ViewA/Type             = "OpenGL"
 #i:Gr/ViewA/WindowSizeX      = 1024
 #i:Gr/ViewA/WindowSizeY      = 768
-#b:Gr/ViewA/IncludeAxes      = "False"
+#b:Gr/ViewA/IncludeAxes      = "True"
 #d:Gr/ViewA/Theta            = 55 deg
 #d:Gr/ViewA/Phi              = 20 deg
 #s:Gr/ViewA/Projection       = "Perspective"
@@ -182,8 +186,8 @@ sv:Ph/Default/Modules = 1 "g4em-standard_opt4" #"g4em-standard_opt2" "g4em-stand
 
 
 
-b:Ts/PauseBeforeQuit = "True"
+b:Ts/PauseBeforeQuit = "False"
 
 
 
-Ts/UseQt = "True"
+Ts/UseQt = "False"

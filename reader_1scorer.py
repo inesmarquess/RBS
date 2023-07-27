@@ -19,9 +19,10 @@ def Reader_SimRBS(File):
     
     aux = []
     kenergy_aux= []
-    for i in range(len(data)): #i=linha
+    for i in range(len(data)): #i=linha 
         aux.append(data[i][0].split())
-        x = len(aux[i]) -1 #x= comprimento da linha
+        print(aux)
+        x = len(aux[i]) -2 #x= comprimento da linha
         kenergy_aux.append(float(aux[i][x])) #lista com as energias cineticas de cada linha do ficheiro
     
     kenergy=sorted(kenergy_aux)
